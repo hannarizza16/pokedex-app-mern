@@ -1,5 +1,5 @@
 
-import Pokedex from '../components/pokedex.jsx' 
+import Pokedex from "../components/Pokedex.jsx" 
 import './App.css'
 
 function App() {
