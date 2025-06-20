@@ -9,6 +9,7 @@ export function PokemonProvider({ children }) {
     const [state, dispatch] =useReducer(pokemonReducer, initialState)
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const [loading, setLoading] = useState(true)
 
 
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL 
@@ -26,7 +27,10 @@ export function PokemonProvider({ children }) {
             })
         } catch (error) {
             console.error('Error fetching pokemons', error)
+            setErrorMessage('Failed to fetch data, please try again later.')
             //set loading
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -95,7 +99,8 @@ export function PokemonProvider({ children }) {
             successMessage,
             setSuccessMessage,
             errorMessage,
-            setErrorMessage
+            setErrorMessage,
+            loading
         }}>
             {children}
 

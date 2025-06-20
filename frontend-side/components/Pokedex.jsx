@@ -8,8 +8,7 @@ export default function Pokedex() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
-  const [load, setLoading] = useState(false)
-  const { state, deletePokemon } = useContext(PokemonContext);
+  const { state, deletePokemon, loading, errorMessage } = useContext(PokemonContext);
   const { pokemons } = state;
 
   const handleCardClick = (pokemon) => {
@@ -48,7 +47,13 @@ export default function Pokedex() {
 
       {/* Pokémon Cards */}
       <div className="p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {pokemons.length === 0 ? (
+        {loading ? (
+          <div className="flex justify-center items-center col-span-full min-h-[200px]">
+              <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : errorMessage ? (
+          <div className="text-red-500 text-center col-span-full">{errorMessage}</div>
+        ) : pokemons.length === 0 ? (
           <p className="text-center col-span-full">No Pokémon found.</p>
         ) : (
           pokemons.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((pokemon) => (

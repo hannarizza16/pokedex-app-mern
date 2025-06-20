@@ -112,7 +112,7 @@ export default function AddPokemon({ onClose }) {
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black opacity-50" onClick={onClose} />
+            <div className="absolute inset-0 bg-black opacity-80" onClick={onClose} />
 
             {/* Modal Content */}
             <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 z-10 w-11/12 sm:w-[600px]">
